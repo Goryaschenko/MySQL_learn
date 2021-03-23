@@ -1,18 +1,18 @@
-CREATE DATABASE IF NOT EXISTS  example;
+п»їCREATE DATABASE IF NOT EXISTS  example;
 USE example;
 CREATE TABLE IF NOT EXISTS users (id INT UNSIGNED NOT NULL, name CHAR);
 
--- Для создания дампа 
--- В консоле прописываем команду 
+-- Р”Р»СЏ СЃРѕР·РґР°РЅРёСЏ РґР°РјРїР° 
+-- Р’ РєРѕРЅСЃРѕР»Рµ РїСЂРѕРїРёСЃС‹РІР°РµРј РєРѕРјР°РЅРґСѓ 
 -- "mysqldump example > example.sql;"
 
 CREATE DATABASE IF NOT EXISTS sample;
 USE sample;
 
--- Для того чтобы развернуть дамп 
--- В консоле прописываем команду 
+-- Р”Р»СЏ С‚РѕРіРѕ С‡С‚РѕР±С‹ СЂР°Р·РІРµСЂРЅСѓС‚СЊ РґР°РјРї 
+-- Р’ РєРѕРЅСЃРѕР»Рµ РїСЂРѕРїРёСЃС‹РІР°РµРј РєРѕРјР°РЅРґСѓ 
 -- "mysq sample < example.sql;"
 
--- Для создания дампа первых 100 строк:
+-- Р”Р»СЏ СЃРѕР·РґР°РЅРёСЏ РґР°РјРїР° РїРµСЂРІС‹С… 100 СЃС‚СЂРѕРє:
 -- mysqldump --opt --where="1 ORDER BY help_keyword_id ASC limit 100" mysql help_keyword > dump.sql
--- Тут мы сортируем таблицу по help_keyword_id и выводим первые 100 строк
+-- РўСѓС‚ РјС‹ СЃРѕСЂС‚РёСЂСѓРµРј С‚Р°Р±Р»РёС†Сѓ РїРѕ help_keyword_id Рё РІС‹РІРѕРґРёРј РїРµСЂРІС‹Рµ 100 СЃС‚СЂРѕРє
