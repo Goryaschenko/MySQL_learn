@@ -412,16 +412,15 @@ SELECT * FROM media;
  */
 
 CREATE TABLE posts (
-id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+post_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 user_id BIGINT UNSIGNED NOT NULL,
 txt TEXT,
 media_types_id INT UNSIGNED NOT NULL, -- картинка
 file_name VARCHAR(245) DEFAULT NULL COMMENT '/files/folder/img.png',
 created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 post_privat BOOL NOT NULL DEFAULT False,
-INDEX post_user_idx (user_id)
-CONSTRAINT fk_posts_users_comm FOREIGN KEY (post_id) REFERENCES posts (id),
-CONSTRAINT fk_posts_users_users FOREIGN KEY (user_id) REFERENCES users (id) 
+INDEX post_user_idx (user_id),
+CONSTRAINT user_posts_fk FOREIGN KEY (user_id) REFERENCES users (id) 
 );
 
 
@@ -434,13 +433,12 @@ CONSTRAINT fk_posts_users_users FOREIGN KEY (user_id) REFERENCES users (id)
  * 
  */
 CREATE TABLE likes (
-
+post_id BIGINT UNSIGNED NOT NULL,
 user_id BIGINT UNSIGNED NOT NULL,
-owner_id BIGINT UNSIGNED NOT NULL,
-media_id UNSIGNED NOT NULL,
-PRIMARY KEY (user_id, owner_id),
-CONSTRAINT fk_likes_users FOREIGN KEY (user_id) REFERENCES users (id)
-CONSTRAINT fk_likes_users FOREIGN KEY (owner_id) REFERENCES users (id)
+media_id INT UNSIGNED NOT NULL,
+PRIMARY KEY (user_id, post_id),
+CONSTRAINT fk_likes_users FOREIGN KEY (user_id) REFERENCES users (id),
+CONSTRAINT fk_likes_post FOREIGN KEY (post_id) REFERENCES posts (post_id)
 );
 
 /*12 Саздаем таблицу Черный список
@@ -459,8 +457,6 @@ PRIMARY KEY (scoundrel_id, user_id),
   CONSTRAINT fk_black_list_scoundrel FOREIGN KEY (scoundrel_id) REFERENCES users (id)
 );
 
-
-/* Физически пока не успеваю сделать больше
 
 
 
